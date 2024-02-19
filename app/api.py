@@ -20,6 +20,10 @@ def submit():
 	if not points:
 		abort(401)
 
+	dupe = Score.query.filter((Score.name==name) & (Score.points==points)).first()
+	if dupe:
+		abort(401)
+
 	score = Score(name=name, points=points)
 	db.session.add(score)
 	db.session.commit()
