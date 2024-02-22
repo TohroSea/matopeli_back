@@ -1,9 +1,12 @@
 from flask import Blueprint, request, abort
+from flask_cors import CORS
 from models import db, Score
 import json
 
 
 api = Blueprint("api", __name__)
+
+CORS(api)
 
 
 @api.route("/submit", methods=["POST"])
